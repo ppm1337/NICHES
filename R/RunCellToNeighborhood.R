@@ -69,8 +69,11 @@ RunCellToNeighborhood <- function(sys.small,
   demo <- Seurat::CreateSeuratObject(counts = as.matrix(scc),assay = 'CellToNeighborhood')
 
   # Add metadata based on ident slot
+  new_meta <- Seurat::Idents(sys.small)[barcodes]
+  names(new_meta) <- paste("Neighborhood",names(new_meta),sep = "—")
+
   demo <- Seurat::AddMetaData(demo,metadata = barcodes,col.name = 'SendingCell')
-  demo <- Seurat::AddMetaData(demo,metadata = Seurat::Idents(sys.small)[barcodes],col.name = 'SendingType')
+  demo <- Seurat::AddMetaData(demo,metadata = new_meta,col.name = 'SendingType')
 
   # Gather and assemble additional metadata
   if (!is.null(meta.data.to.map)){
