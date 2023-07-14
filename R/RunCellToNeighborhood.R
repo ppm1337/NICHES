@@ -63,7 +63,7 @@ RunCellToNeighborhood <- function(sys.small,
   
   # Label columns properly
   barcodes <- colnames(scc)
-  colnames(scc) <- paste(colnames(scc),'Neighborhood',sep = '—')
+  colnames(scc) <- paste("Neighborhood",colnames(scc), sep = "—")
 
   # Use this matrix to create a Seurat object:
   demo <- Seurat::CreateSeuratObject(counts = as.matrix(scc),assay = 'CellToNeighborhood')
